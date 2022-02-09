@@ -1,0 +1,15 @@
+{
+  "name": "cosc221-project1",
+  "version": "1.0.0",
+  "description": "Bit representations",
+  "main": "index.js",
+  "repository": "https://github.com/JJosephttg/COSC221-Project1.git",
+  "author": "Josh J",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index"
+  },
+  "dependencies": {
+    "inquirer": "8.2.0"
+  }
+}
