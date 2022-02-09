@@ -6,6 +6,7 @@
   "repository": "https://github.com/JJosephttg/COSC221-Project1.git",
   "author": "Josh J",
   "license": "MIT",
+  "type": "module",
   "scripts": {
     "start": "node index"
   },
