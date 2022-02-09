@@ -21,25 +21,34 @@ function promptMainMenu() {
       loop: true,
       type: 'list',
       choices: baseMenuChoices
+    },
+    {
+      name: 'userInput',
+      message: 'Enter 8-bit binary number to convert',
+      type: 'input',
+      when: ({ numberType }) => numberType === MainMenuChoice.BINARY
+    },
+    {
+      name: 'userInput',
+      message: 'Enter a signed decimal integer between -128 and 127',
+      type: 'input',
+      when: ({ numberType }) => numberType === MainMenuChoice.INTEGER
     }
-  ]).then(userInput => {
-    switch(userInput.numberType) {
-      case MainMenuChoice.BINARY: 
-        promptBinaryQuestion();
+  ]).then(({ numberType, userInput }) => {
+    switch(numberType) {
+      case MainMenuChoice.BINARY:
+        //displayBinaryInputConversion(userInput);
+        promptMainMenu();
         break;
       case MainMenuChoice.INTEGER:
-        promptIntegerQuestion();
+        //displayDecimalIntegerInputConversion(userInput);
+        promptMainMenu();
+        break;
+      default:
+        console.log('Quitting application...');
         break;
     }
   });
-}
-
-function promptBinaryQuestion() {
-
-}
-
-function promptIntegerQuestion() {
-  
 }
 
 promptMainMenu();
