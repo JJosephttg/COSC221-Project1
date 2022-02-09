@@ -26,13 +26,19 @@ function promptMainMenu() {
       name: 'userInput',
       message: 'Enter 8-bit binary number to convert',
       type: 'input',
-      when: ({ numberType }) => numberType === MainMenuChoice.BINARY //Only ask question in prompt if choice is 8-bit binary number
+      when: ({ numberType }) => numberType === MainMenuChoice.BINARY, //Only ask question in prompt if choice is 8-bit binary number
+      filter: input => input.replaceAll(' ', ''),
+      validate: input => new RegExp(/^[0-1]+$/).test(input) && input.length === 8 || 'Input should be a 8 bit binary number'
     },
     {
       name: 'userInput',
       message: 'Enter a signed decimal integer between -128 and 127',
       type: 'input',
-      when: ({ numberType }) => numberType === MainMenuChoice.INTEGER //Only ask question in prompt if choice is decimal number
+      when: ({ numberType }) => numberType === MainMenuChoice.INTEGER, //Only ask question in prompt if choice is decimal number
+      validate: input => {
+        const parsedNum = parseInt(input);
+        return (parsedNum >= -128 && parsedNum <= 127) || 'Input should be a number between -128 and 127';
+      }
     }
   ]).then(({ numberType, userInput }) => {
     // Get response after questions are answered to determine what conversion is needed and pass user entered input to associated conversion method
