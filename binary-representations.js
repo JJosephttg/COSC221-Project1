@@ -4,10 +4,12 @@ export function displayBinaryInputConversion(binaryNum) {
   const signedMagnitude = convertToDecimal(binaryNum);
   const onesComplement = getOnesComplement(binaryNum);
   const twosComplement = getTwosComplement(binaryNum);
+  const excess128 = getExcess128(binaryNum);
   console.log(`
     Signed magnitude: ${signedMagnitude}
     Ones complement: ${onesComplement}
     twos complement: ${twosComplement}
+    excess-128 notation: ${excess128}
   `);
 }
 
@@ -21,6 +23,11 @@ function getOnesComplement(binaryNum) {
 function getTwosComplement(binaryNum) {
   const onesComplement = getOnesComplementFromBinary(binaryNum)
   return convertToDecimal(addBit(onesComplement))
+}
+
+// Swap first bit
+function getExcess128([signBit, ...binaryNum]) {
+  return convertToDecimal((parseInt(signBit) ^ 1).toString() + binaryNum.join(''));
 }
 
 function convertToDecimal([signBit, ...binaryNum]) {
