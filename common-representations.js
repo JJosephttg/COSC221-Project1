@@ -1,3 +1,6 @@
+/*
+  This file is for logic shared between representation calculations
+*/
 // Adds one and does necessary carry over to a binary number
 export function addBit(binaryNum) {
   let resultNum = [...binaryNum];

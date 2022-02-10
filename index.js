@@ -1,3 +1,6 @@
+/*
+  This file is in charge of starting/managing the menu options and to gather input
+*/
 import inquirer from "inquirer";
 import { displayBinaryInputConversion } from "./binary-representations.js";
 import { displayDecimalIntegerInputConversion } from "./decimal-representations.js";

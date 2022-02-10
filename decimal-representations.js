@@ -1,3 +1,6 @@
+/*
+  This file is for decimal conversions and displaying the results of the calculations
+*/
 import { addBit, getOnesComplementFromBinary } from "./common-representations.js";
 
 export function displayDecimalIntegerInputConversion(decNum) {
