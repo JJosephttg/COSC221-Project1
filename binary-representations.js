@@ -1,11 +1,29 @@
+import { addBit, getOnesComplementFromBinary } from './common-representations.js';
+
 export function displayBinaryInputConversion(binaryNum) {
-  const signedMagnitude = getSignedMagnitude(binaryNum);
+  const signedMagnitude = convertToDecimal(binaryNum);
+  const onesComplement = getOnesComplement(binaryNum);
+  const twosComplement = getTwosComplement(binaryNum);
   console.log(`
     Signed magnitude: ${signedMagnitude}
+    Ones complement: ${onesComplement}
+    twos complement: ${twosComplement}
   `);
 }
 
-function getSignedMagnitude([signBit, ...binaryNum]) {
+// Invert the bits except for sign and convert to decimal
+function getOnesComplement(binaryNum) {
+  const onesComplement = getOnesComplementFromBinary(binaryNum)
+  return convertToDecimal(onesComplement);
+}
+
+// Invert bits and add one
+function getTwosComplement(binaryNum) {
+  const onesComplement = getOnesComplementFromBinary(binaryNum)
+  return convertToDecimal(addBit(onesComplement))
+}
+
+function convertToDecimal([signBit, ...binaryNum]) {
   // Convert last 7 bits to decimal by summing decimal representations at each bit value and reducing to a single value
   const decimal = binaryNum.reverse().reduce((sum, curBit, i) => sum += Math.pow(2, i) * curBit, 0);
 

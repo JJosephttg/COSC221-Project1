@@ -1,7 +1,9 @@
+import { addBit, getOnesComplementFromBinary } from "./common-representations.js";
+
 export function displayDecimalIntegerInputConversion(decNum) {
   const signedMagnitude = getSignedMagnitude(decNum);
-  const onesComplement = getOnesComplement(signedMagnitude);
-  const twosComplement = getTwosComplement(onesComplement);
+  const onesComplement = getOnesComplementFromBinary(signedMagnitude);
+  const twosComplement = addBit(onesComplement);
   const excess128 = getExcess128Notation(decNum);
   console.log(`
     Signed magnitude: ${signedMagnitude}
@@ -17,23 +19,6 @@ function getSignedMagnitude(decNum) {
   const binaryNum = convertTo7Bit(decNum)
 
   return signBit + binaryNum; // Add sign bit and rest of bits together for final binary number
-}
-
-function getOnesComplement([signBit, ...binaryNum]) {
-  return signBit + binaryNum.map(bit => bit ^ 1).join('');
-}
-
-// Take ones complement and add 1 to the number, carrying over any extra bits
-function getTwosComplement(onesComp) {
-  let twosComp = [...onesComp];
-  for (let i = 7; i >= 0; i--) {
-    if (onesComp[i] == '0') {
-      twosComp[i] = '1';
-      break;
-    }
-    twosComp[i] = '0';
-  }
-  return twosComp.join('');
 }
 
 function getExcess128Notation(decNum) {
