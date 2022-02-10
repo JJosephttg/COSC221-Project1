@@ -7,8 +7,7 @@ export function displayDecimalIntegerInputConversion(decNum) {
 
 function getSignedMagnitude(decNum) {
   //Calculate sign bit first by checking for negative sign (-0 included)
-  let signBit = 0;
-  if (decNum.includes('-')) signBit = 1;
+  let signBit = decNum.includes('-') & 1;
   
   let num = Math.abs(decNum);
   let binaryNum = '';
@@ -17,7 +16,7 @@ function getSignedMagnitude(decNum) {
     const subtractedNum = num - 2 ** i;
     //If the number subtracted for that bit is too big, it has to be a 0, but if the decimal is small enough to subtract from, we know that that bit must be 1
     if (subtractedNum >= 0) { 
-      num = num - 2**i;
+      num = subtractedNum;
       binaryNum += '1';
       continue;
     }
