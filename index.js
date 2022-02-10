@@ -1,5 +1,6 @@
 import inquirer from "inquirer";
 import { displayBinaryInputConversion } from "./binary-representations.js";
+import { displayDecimalIntegerInputConversion } from "./decimal-representations.js";
 
 // Enum to keep track of response type
 const MainMenuChoice = {
@@ -48,7 +49,7 @@ function promptMainMenu() {
         promptMainMenu();
         break;
       case MainMenuChoice.INTEGER:
-        //displayDecimalIntegerInputConversion(userInput);
+        displayDecimalIntegerInputConversion(userInput);
         promptMainMenu();
         break;
       default:
